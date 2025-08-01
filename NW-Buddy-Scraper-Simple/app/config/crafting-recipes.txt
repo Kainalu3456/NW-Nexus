@@ -1,0 +1,307 @@
+Recipe: Gorgon's Mask
+100x Prismatic Cloth
+80x Prismatic Leather
+30x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab 
+
+Recipe: Gorgon's Shirt
+150x Prismatic Cloth
+100x Prismatic Leather
+40x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab 
+
+Recipe: Gorgon's Handcovers
+100x Prismatic Cloth
+50x Prismatic Leather
+30x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab 
+
+Recipe: Gorgon's Leggings
+130x Prismatic Cloth
+70x Prismatic Leather
+40x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab 
+
+Recipe: Gorgon's Sandals
+100x Prismatic Cloth
+50x Prismatic Leather
+30x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Hat
+80x Prismatic Leather
+60x Prismatic Cloth
+40x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Cuirass
+130x Prismatic Leather
+80x Prismatic Cloth
+60x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Gloves
+60x Prismatic Leather
+50x Prismatic Cloth
+40x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Pants
+110x Prismatic Leather
+70x Prismatic Cloth
+50x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Boots
+80x Prismatic Leather
+50x Prismatic Cloth
+40x Prismatic Ingot
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Antlers
+80x Prismatic Ingot
+60x Prismatic Leather
+40x Prismatic Cloth
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Breastplate
+120x Prismatic Ingot
+80x Prismatic Leather
+60x Prismatic Cloth
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Gauntlets
+60x Prismatic Ingot
+50x Prismatic Leather
+40x Prismatic Cloth
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Greaves
+100x Prismatic Ingot
+70x Prismatic Leather
+50x Prismatic Cloth
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Sabatons
+60x Prismatic Ingot
+50x Prismatic Leather
+40x Prismatic Cloth
+1x Armor Matrix
+1x Gorgon Essence 
+1x Prismatic Scarab
+
+Recipe: Gorgon's Ring
+1x Prismatic Band
+	2x Prismatic Ingot
+	250x Azoth
+1x Prismatic Setting
+	1x Prismatic Ingot
+	250x Azoth
+140x Prismatic Ingot
+2x Jewelry Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Earring
+1x Prismatic Hook
+	2x Prismatic Ingot
+	250x Azoth
+1x Prismatic Setting
+	1x Prismatic Ingot
+	250x Azoth
+140x Prismatic Ingot
+2x Jewelry Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Amulet
+1x Prismatic Chain
+	2x Prismatic Ingot
+	250x Azoth
+1x Prismatic Setting
+	1x Prismatic Ingot
+	250x Azoth
+140x Prismatic Ingot
+2x Jewelry Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Flail
+130x Prismatic Ingot
+110x Prismatic Planks
+120x Prismatic Leather
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Void Gauntlet
+165x Prismatic Leather 
+140x Prismatic Cloth 
+100x Prismatic Ingot 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Rapier
+130x Prismatic Ingot
+110x Prismatic Planks 
+120x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Longsword
+130x Prismatic Ingot
+110x Prismatic Planks 
+120x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Hatchet
+130x Prismatic Ingot
+110x Prismatic Planks 
+120x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Hatchet
+130x Prismatic Ingot
+110x Prismatic Planks 
+120x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's War Hammer
+150x Prismatic Ingot
+110x Prismatic Planks 
+100x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Spear
+165x Prismatic Planks
+100x Prismatic Ingot 
+100x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Bow
+180x Prismatic Planks
+100x Prismatic Ingot 
+145x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Musket
+135x Prismatic Ingot
+135x Prismatic Planks 
+95x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Great Axe
+150x Prismatic Ingot
+110x Prismatic Planks 
+100x Prismatic Leather 
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Fire Staff
+165x Prismatic Planks
+100x Prismatic Ingot 
+100x Prismatic Leather  
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Life Staff
+165x Prismatic Planks
+100x Prismatic Ingot 
+100x Prismatic Leather  
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Ice Gauntlet
+165x Prismatic Leather
+140x Prismatic Cloth 
+100x Prismatic Ingot  
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Round Shield
+80x Prismatic Ingot
+50x Prismatic Planks
+70x Prismatic Leather 
+1x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Kite Shield
+80x Prismatic Ingot
+50x Prismatic Planks
+70x Prismatic Leather 
+1x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Tower Shield
+80x Prismatic Ingot
+50x Prismatic Planks
+70x Prismatic Leather 
+1x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab
+
+Recipe: Gorgon's Blunderbuss
+135x Prismatic Ingot
+135x Prismatic Planks
+95x Prismatic Leather
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab 
+
+Recipe: Gorgon's Greatsword
+150x Prismatic Ingot
+110x Prismatic Planks
+100x Prismatic Leather
+2x Weapon Matrix
+1x Gorgon Essence
+1x Prismatic Scarab 

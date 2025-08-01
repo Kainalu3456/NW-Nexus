@@ -1,0 +1,153 @@
+{
+  "name": "nw-buddy-scraper",
+  "version": "1.0.0",
+  "description": "A web crawler for scraping nwbuddy sites with JavaScript support",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron-forge start",
+    "dev": "nodemon src/nwbuddy-crawler.js",
+    "test": "node src/test-crawler.js",
+    "scrape-perks": "node src/nwdb-perks-scraper.js",
+    "electron": "electron .",
+    "electron-dev": "node scripts/dev.js",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "build": "electron-builder",
+    "build-win": "electron-builder --windows",
+    "build-mac": "electron-builder --mac",
+    "build-electron": "electron-builder",
+    "build-electron-win": "electron-builder --windows",
+    "build-electron-mac": "electron-builder --mac",
+    "build-portable": "electron-builder --win portable",
+    "build-portable-win": "electron-builder --win portable --x64",
+    "build-simple": "node scripts/simple-build.js",
+    "build-manual": "node scripts/manual-build.js",
+    "build-standalone": "node scripts/standalone-build.js",
+    "build-manual-standalone": "node scripts/manual-standalone-build.js",
+    "build-beta": "node scripts/build-beta.js",
+    "fix-beta-exe": "node scripts/create-proper-exe.js",
+    "build-real-exe": "pkg scripts/executable-launcher.js --targets node18-win-x64 --output dist-beta/NW-Buddy-Scraper-Beta.exe",
+    "create-zip-launcher": "node scripts/create-zip-launcher.js",
+    "create-simple-zip": "node scripts/create-simple-zip.js",
+    "test-executable": "node scripts/test-executable.js",
+    "beta-test": "node scripts/beta-test.js",
+    "simple-beta-test": "node scripts/simple-beta-test.js",
+    "launch-beta": "node scripts/launch-beta-test.js",
+    "dist": "npm run build-with-nwbuddy",
+    "nwdb-craftmod-scraper": "node src/nwdb-perk-craftmod-scraper.js",
+    "market-prices": "node src/nwbuddy-crawler.js --market-prices",
+    "market-prices-test": "node src/test-nwmp-scraper.js",
+    "crawl-with-prices": "node src/nwbuddy-crawler.js --market-prices --server valhalla",
+    "download-nwbuddy": "node scripts/download-nwbuddy.js",
+    "download-nwbuddy-force": "node scripts/download-nwbuddy.js force",
+    "build-with-nwbuddy": "node scripts/build.js",
+    "build-without-nwbuddy": "node scripts/build.js --skip-download",
+    "test-build": "node scripts/test-build.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "electron-squirrel-startup": "^1.0.1",
+    "fs-extra": "^11.3.0",
+    "puppeteer": "^23.9.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.1",
+    "@electron-forge/maker-deb": "^7.8.1",
+    "@electron-forge/maker-squirrel": "^7.8.1",
+    "@electron-forge/maker-zip": "^7.8.1",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0",
+    "nodemon": "^3.0.1",
+    "pkg": "^5.8.1"
+  },
+  "build": {
+    "appId": "com.nwbuddy.scraper",
+    "productName": "NW Buddy Scraper",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "config/**/*",
+      "node_modules/**/*",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/nwbuddy",
+        "to": "nwbuddy",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "portable",
+      "sign": false
+    },
+    "electronVersion": "28.3.3",
+    "afterSign": null,
+    "afterAllArtifactBuild": null
+  },
+  "keywords": [
+    "web-crawler",
+    "scraper",
+    "puppeteer",
+    "nwbuddy",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "NWBuddyScraper",
+        "asar": true,
+        "overwrite": true,
+        "ignore": [
+          "node_modules/.cache",
+          "dist",
+          "dist-beta",
+          "output",
+          ".git",
+          ".gitignore",
+          "README.md",
+          "scripts",
+          "test-*",
+          "BETA_*",
+          "ELECTRON_*"
+        ],
+        "extraResource": [
+          "assets/**/*"
+        ]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "win32"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "options": {
+              "maintainer": "NW Buddy Scraper Team",
+              "homepage": "https://github.com/your-repo/nw-buddy-scraper"
+            }
+          }
+        }
+      ],
+      "publishers": []
+    }
+  }
+}

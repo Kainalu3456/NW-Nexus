@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NW Nexus</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header-content">
+          <div class="header-left">
+            <h1>🎮 NW Nexus</h1>
+            <p>New World data scraping and analysis tool</p>
+          </div>
+          <div class="header-right">
+            <button id="quick-theme-toggle" class="quick-theme-btn" title="Quick Theme Toggle">🎨</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="tab-bar">
+                      <button class="tab-btn" data-tab="nwbuddy" id="tab-btn-nwbuddy" draggable="true">NW Nexus</button>
+          <button class="tab-btn" data-tab="schedule" id="tab-btn-schedule" draggable="true">Schedule Maker</button>
+          <button class="tab-btn" data-tab="dailyweekly" id="tab-btn-dailyweekly" draggable="true">Daily/Weeklys</button>
+          <button class="tab-btn" data-tab="nwd" id="tab-btn-nwd" draggable="true">NWD</button>
+                      <button class="tab-btn active" data-tab="nwb" id="tab-btn-nwb" draggable="true">NWB</button>
+          <button class="tab-btn" data-tab="map" id="tab-btn-map" draggable="true">Map</button>
+          <button class="tab-btn" data-tab="settings" id="tab-btn-settings" draggable="true">⚙️ Settings</button>
+        </div>
+
+        <div id="tab-nwbuddy" class="tab-content">
+          <!-- Existing NW Buddy Scraper UI starts here -->
+          <div class="input-section">
+            <div class="input-group">
+              <label for="url-input">NW Buddy URL:</label>
+              <input
+                type="url"
+                id="url-input"
+                placeholder="https://www.nw-buddy.de/gearsets/share/..."
+                class="url-input"
+              />
+            </div>
+            
+            <div class="market-options">
+              <div class="checkbox-group">
+                <input type="checkbox" id="include-market-prices" class="checkbox-input" checked style="display:none;">
+                <label for="include-market-prices">Include Market Prices</label>
+              </div>
+              
+              <div class="server-select-group">
+                <label for="server-select">Server:</label>
+                <select id="server-select" class="server-select" disabled>
+                  <option value="valhalla">Valhalla</option>
+                  <option value="aries">Aries</option>
+                  <option value="nysa">Nysa</option>
+                  <option value="pangea">Pangea</option>
+                  <option value="el_dorado">El Dorado</option>
+                  <option value="aquarius">Aquarius</option>
+                </select>
+              </div>
+              
+              <button id="refresh-prices-button" class="refresh-button" disabled>
+                <span class="button-text">🔄 Refresh Prices</span>
+              </button>
+            </div>
+            
+            <button id="crawl-button" class="crawl-button">
+              <span class="button-text">Extract Data</span>
+              <div class="spinner"></div>
+            </button>
+          </div>
+
+          <div class="results-section" id="results-section">
+            <div class="results-header">
+              <h2>Results</h2>
+              <button id="save-button" class="save-button" disabled>
+                💾 Save Results
+              </button>
+            </div>
+
+            <div class="results-content" id="results-content">
+              <!-- Edit Market Prices button will be injected here by JS if not present -->
+              <!-- Results will be populated here -->
+            </div>
+          </div>
+
+          <div class="loading-section" id="loading-section">
+            <div class="loading-content">
+              <div class="loading-spinner"></div>
+              <p>Extracting data from NW Nexus...</p>
+              <small>This may take a few moments</small>
+            </div>
+          </div>
+
+          <div class="error-section" id="error-section">
+            <div class="error-content">
+              <h3>❌ Error</h3>
+              <p id="error-message"></p>
+              <button id="retry-button" class="retry-button">Try Again</button>
+            </div>
+          </div>
+          <!-- Existing NW Buddy Scraper UI ends here -->
+        </div>
+        <div id="tab-schedule" class="tab-content">
+          <div class="schedule-maker">
+            <div class="schedule-header">
+              <h2>📅 Schedule Maker</h2>
+              <div class="schedule-controls">
+                <div class="discord-bot-status-container">
+                  <span id="discord-bot-status" class="discord-bot-status">🔍 Checking Discord Bot...</span>
+                  <button id="refresh-discord-data" class="btn-secondary" title="Refresh Discord Bot Data">🔄</button>
+                </div>
+                <button id="add-custom-event" class="btn-primary">➕ Add Custom Event</button>
+                <button id="import-discord-data" class="btn-secondary">📥 Import Discord Data</button>
+                <button id="export-schedule" class="btn-secondary">📤 Export Schedule</button>
+                <button id="clear-schedule" class="btn-danger">🗑️ Clear All</button>
+              </div>
+            </div>
+
+            <div class="schedule-input-section">
+              <div class="server-selector">
+                <label for="schedule-server">Region:</label>
+                <select id="schedule-server" class="server-select">
+                  <option value="east">EAST</option>
+                  <option value="west">WEST</option>
+                  <option value="central">CENTRAL</option>
+                  <option value="south">SOUTH</option>
+                  <option value="europe">EUROPE</option>
+                  <option value="asia">ASIA</option>
+                  <option value="oceania">OCEANIA</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="schedule-display">
+              <div class="schedule-tabs">
+                <button class="schedule-tab active" data-day="today">Today</button>
+              </div>
+              
+              <div class="schedule-content">
+                <div id="schedule-today" class="schedule-day active">
+                  <div class="time-slots">
+                    <!-- Time slots will be populated by JavaScript -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Event Modal -->
+            <div id="custom-event-modal" class="modal">
+              <div class="modal-content">
+                <h3>Add Custom Event</h3>
+                <form id="custom-event-form">
+                  <div class="form-group">
+                    <label for="event-name">Event Name:</label>
+                    <input type="text" id="event-name" required placeholder="e.g., Wurm, Gorgon, OPR">
+                  </div>
+                  <div class="form-group">
+                    <label for="event-time">Time:</label>
+                    <input type="time" id="event-time" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="event-location">Location:</label>
+                    <input type="text" id="event-location" placeholder="e.g., Mourningdale, Ebonscale">
+                  </div>
+                  <div class="form-group">
+                    <label for="event-faction">Faction:</label>
+                    <select id="event-faction">
+                      <option value="">No Faction</option>
+                      <option value="syndicate">Syndicate</option>
+                      <option value="covenant">Covenant</option>
+                      <option value="marauders">Marauders</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="event-company">Company:</label>
+                    <input type="text" id="event-company" placeholder="e.g., TwoTrailerParkGirls">
+                  </div>
+                  <div class="form-group">
+                    <label for="event-notes">Notes:</label>
+                    <textarea id="event-notes" placeholder="Additional notes..."></textarea>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn-primary">Add Event</button>
+                    <button type="button" id="cancel-custom-event" class="btn-secondary">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-dailyweekly" class="tab-content">
+          <div class="daily-weekly-tracker">
+            <div class="tracker-header">
+              <h2>📅 Daily & Weekly Tracker</h2>
+              <div class="tracker-controls">
+                <button id="add-character" class="btn-primary">➕ Add Character</button>
+                <button id="save-tracker-data" class="btn-secondary">💾 Save Data</button>
+                <button id="load-tracker-data" class="btn-secondary">📂 Load Data</button>
+                <button id="clear-tracker-data" class="btn-danger">🗑️ Clear All</button>
+              </div>
+            </div>
+
+            <div class="tracker-info">
+              <div class="reset-times">
+                <div class="reset-time">
+                  <span class="reset-label">🕐 Daily Reset:</span>
+                  <span class="reset-value" id="daily-reset-display">5:00 AM EST</span>
+                </div>
+                <div class="reset-time">
+                  <span class="reset-label">📅 Weekly Reset:</span>
+                  <span class="reset-value" id="weekly-reset-display">Tuesday 5:00 AM EST</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="characters-container" id="characters-container">
+              <!-- Character sections will be added here -->
+            </div>
+
+            <!-- Add Character Modal -->
+            <div id="add-character-modal" class="modal">
+              <div class="modal-content">
+                <h3>Add New Character</h3>
+                <form id="add-character-form">
+                  <div class="form-group">
+                    <label for="character-name">Character Name:</label>
+                    <input type="text" id="character-name" required placeholder="e.g., Kanye West">
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn-primary">Add Character</button>
+                    <button type="button" id="cancel-add-character" class="btn-secondary">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Add Event Modal -->
+            <div id="add-event-modal" class="modal">
+              <div class="modal-content">
+                <h3>Add New Event</h3>
+                <form id="add-event-form">
+                  <div class="form-group">
+                    <label for="event-type-select">Event Type:</label>
+                    <select id="event-type-select" required>
+                      <option value="">Select Type</option>
+                      <option value="daily">Daily (24 hours)</option>
+                      <option value="weekly">Weekly (7 days)</option>
+                      <option value="custom">Custom Timer</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="event-name-input">Event Name:</label>
+                    <input type="text" id="event-name-input" required placeholder="e.g., OPR, Arena, Crafting">
+                  </div>
+                  <div class="form-group" id="custom-timer-group" style="display: none;">
+                    <label for="custom-timer-hours">Custom Timer (hours):</label>
+                    <input type="number" id="custom-timer-hours" min="1" max="168" placeholder="e.g., 12">
+                  </div>
+                  <div class="form-group">
+                    <label for="event-notes">Notes (optional):</label>
+                    <textarea id="event-notes" placeholder="Additional notes..."></textarea>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="btn-primary">Add Event</button>
+                    <button type="button" id="cancel-add-event" class="btn-secondary">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-nwd" class="tab-content">
+          <div class="iframe-container" style="padding: 0; height: 100%; width: 95vw; margin: 0; position: relative; left: 50%; transform: translateX(-50%);">
+            <div class="iframe-overlay">
+              <div class="copy-tips">
+                <span>💡 Right-click for copy options • Ctrl+C to copy selected text</span>
+              </div>
+            </div>
+            <iframe src="https://nwdb.info/" style="width:95vw;height:95vh;border:none;min-height:900px;margin:0;padding:0;" title="NWDB"></iframe>
+          </div>
+        </div>
+        <div id="tab-nwb" class="tab-content active">
+          <div class="nwbuddy-embedded-container">
+            <!-- NW Buddy iframe at the top -->
+            <div class="nwbuddy-view-container" id="nwbuddy-view-container" style="margin-bottom: 20px;">
+              <div class="iframe-container" id="nwbuddy-iframe-container" style="padding: 0; height: 90vh; width: 95vw; margin: 0; position: relative; left: 50%; transform: translateX(-50%);">
+                <div class="iframe-overlay">
+                  <div class="copy-tips">
+                    <span>💡 Right-click for copy options • Ctrl+C to copy selected text</span>
+                  </div>
+                </div>
+                <iframe id="nwbuddy-iframe" src="https://www.nw-buddy.de/" style="width:95vw;height:90vh;border:none;margin:0;padding:0;" title="NW Buddy"></iframe>
+              </div>
+            </div>
+            
+            <!-- Control panels below the iframe -->
+            <div class="nwbuddy-control-panel" id="nwbuddy-control-panel" style="display: none;">
+              <div class="nwbuddy-header">
+                <h2>🎮 NW Buddy Integration</h2>
+                <p>Embedded NW Buddy application</p>
+              </div>
+              
+              <div class="nwbuddy-status-panel">
+                <div class="status-indicator" id="nwbuddy-app-status">
+                  <span class="status-icon">⏳</span>
+                  <span class="status-text">Checking NW Buddy availability...</span>
+                </div>
+                
+                <div class="nwbuddy-controls">
+                  <button id="launch-nwbuddy-btn" class="btn-primary" disabled>
+                    🌐 Load NW Buddy Web App
+                  </button>
+                  <button id="download-nwbuddy-btn" class="btn-secondary">
+                    📥 Download NW Buddy
+                  </button>
+                  <button id="check-nwbuddy-btn" class="btn-secondary">
+                    🔄 Check Status
+                  </button>
+                  <button id="toggle-nwbuddy-view-btn" class="btn-secondary" disabled>
+                    👁️ Show/Hide NW Buddy
+                  </button>
+                </div>
+              </div>
+              
+              <div class="nwbuddy-info-panel">
+                <div class="info-section">
+                  <h3>📋 Current Status</h3>
+                  <div class="info-grid">
+                    <div class="info-item">
+                      <label>Version:</label>
+                      <span id="nwbuddy-version-display">Unknown</span>
+                    </div>
+                    <div class="info-item">
+                      <label>Status:</label>
+                      <span id="nwbuddy-status-display">Checking...</span>
+                    </div>
+                    <div class="info-item">
+                      <label>Last Updated:</label>
+                      <span id="nwbuddy-updated-display">Never</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="info-section">
+                  <h3>⚙️ Quick Actions</h3>
+                  <div class="action-buttons">
+                    <button id="open-gearsets-btn" class="action-btn" disabled>
+                      🛡️ Open Gearsets
+                    </button>
+                    <button id="open-crafting-btn" class="action-btn" disabled>
+                      ⚒️ Open Crafting
+                    </button>
+                    <button id="open-tracking-btn" class="action-btn" disabled>
+                      📊 Open Tracking
+                    </button>
+                    <button id="open-prices-btn" class="action-btn" disabled>
+                      💰 Open Market Prices
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="nwbuddy-log-panel">
+                <h3>📝 Activity Log</h3>
+                <div class="log-container" id="nwbuddy-log">
+                  <div class="log-entry">System initialized...</div>
+                </div>
+                <button id="clear-log-btn" class="btn-secondary">Clear Log</button>
+              </div>
+            </div>
+            
+            <!-- Toggle button for integration panel -->
+            <div class="nwbuddy-toggle-section" style="text-align: center; margin-top: 10px;">
+              <button id="toggle-integration-panel-btn" class="btn-secondary" style="font-size: 12px; padding: 8px 16px;">
+                ⚙️ Show Integration Panel
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="tab-map" class="tab-content">
+          <div class="iframe-container" style="padding: 0; height: 100%; width: 95vw; position: relative; left: 50%; transform: translateX(-50%);">
+            <div class="iframe-overlay">
+              <div class="copy-tips">
+                <span>💡 Right-click for copy options • Ctrl+C to copy selected text</span>
+              </div>
+            </div>
+            <iframe src="https://aeternum-map.th.gl/" style="width:95vw;height:95vh;border:none;min-height:900px;" title="Aeternum Map"></iframe>
+          </div>
+        </div>
+        
+        <div id="tab-settings" class="tab-content">
+          <div class="settings-container">
+            <div class="settings-header">
+              <h2>⚙️ Application Settings</h2>
+              <p>Customize your NW Buddy Scraper experience</p>
+            </div>
+            
+            <div class="settings-sections">
+              <!-- Daily/Weekly Reset Settings -->
+              <div class="settings-section">
+                <h3>🕐 Daily & Weekly Reset Settings</h3>
+                <div class="setting-group">
+                  <label for="reset-timezone">Reset Timezone:</label>
+                  <select id="reset-timezone">
+                    <option value="EST">Eastern Standard Time (EST)</option>
+                    <option value="CST">Central Standard Time (CST)</option>
+                    <option value="MST">Mountain Standard Time (MST)</option>
+                    <option value="PST">Pacific Standard Time (PST)</option>
+                    <option value="GMT">Greenwich Mean Time (GMT)</option>
+                    <option value="UTC">Coordinated Universal Time (UTC)</option>
+                  </select>
+                </div>
+                <div class="setting-group">
+                  <label for="daily-reset-hour">Daily Reset Hour (24-hour format):</label>
+                  <input type="number" id="daily-reset-hour" min="0" max="23" value="5">
+                </div>
+                <div class="setting-group">
+                  <label for="weekly-reset-day">Weekly Reset Day:</label>
+                  <select id="weekly-reset-day">
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2" selected>Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                  </select>
+                </div>
+                <div class="setting-group">
+                  <label for="weekly-reset-hour">Weekly Reset Hour (24-hour format):</label>
+                  <input type="number" id="weekly-reset-hour" min="0" max="23" value="5">
+                </div>
+              </div>
+              
+              <!-- NW Buddy Integration -->
+              <div class="settings-section">
+                <h3>🎮 NW Buddy Integration</h3>
+                <div class="setting-group">
+                  <label>NW Buddy Executable:</label>
+                  <div class="nwbuddy-status" id="nwbuddy-status">
+                    <span class="status-text">Checking...</span>
+                    <button id="download-nwbuddy" class="btn-secondary">📥 Download NW Buddy</button>
+                    <button id="launch-nwbuddy" class="btn-primary" style="display: none;">🌐 Load NW Buddy Web App</button>
+                  </div>
+                </div>
+                <div class="setting-group">
+                  <label for="auto-launch-nwbuddy">Auto-launch NW Buddy with scraper:</label>
+                  <input type="checkbox" id="auto-launch-nwbuddy">
+                </div>
+                <div class="setting-group">
+                  <label for="nwbuddy-version">Current Version:</label>
+                  <span id="nwbuddy-version" class="version-info">Unknown</span>
+                </div>
+              </div>
+              
+              <!-- Theme Settings -->
+              <div class="settings-section">
+                <h3>🎨 Theme Settings</h3>
+                <div class="setting-group">
+                  <label for="theme-selector">UI Theme:</label>
+                  <select id="theme-selector">
+                    <option value="purple">Purple Theme</option>
+                    <option value="green">Hunter Green Theme</option>
+                    <option value="blue">Ocean Blue Theme</option>
+                    <option value="orange">Sunset Orange Theme</option>
+                    <option value="red">Crimson Red Theme</option>
+                    <option value="pink">Rose Pink Theme</option>
+                  </select>
+                </div>
+                <div class="setting-group">
+                  <label for="theme-preview">Theme Preview:</label>
+                  <div id="theme-preview" class="theme-preview">
+                    <div class="preview-header">Sample Header</div>
+                    <div class="preview-button">Sample Button</div>
+                    <div class="preview-input">Sample Input</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Display Settings -->
+              <div class="settings-section">
+                <h3>🎨 Display Settings</h3>
+                <div class="setting-group">
+                  <label for="time-format">Time Format:</label>
+                  <select id="time-format">
+                    <option value="12">12-hour (AM/PM)</option>
+                    <option value="24">24-hour</option>
+                  </select>
+                </div>
+                <div class="setting-group">
+                  <label for="show-timezone">Show Timezone in Display:</label>
+                  <input type="checkbox" id="show-timezone" checked>
+                </div>
+                <div class="setting-group">
+                  <label for="auto-refresh-timers">Auto-refresh timers every:</label>
+                  <select id="auto-refresh-timers">
+                    <option value="1000">1 second</option>
+                    <option value="5000">5 seconds</option>
+                    <option value="10000">10 seconds</option>
+                    <option value="30000">30 seconds</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Notification Settings -->
+              <div class="settings-section">
+                <h3>🔔 Notification Settings</h3>
+                <div class="setting-group">
+                  <label for="enable-notifications">Enable Notifications:</label>
+                  <input type="checkbox" id="enable-notifications" checked>
+                </div>
+                <div class="setting-group">
+                  <label for="notification-sound">Notification Sound:</label>
+                  <select id="notification-sound">
+                    <option value="none">None</option>
+                    <option value="default">Default</option>
+                    <option value="chime">Chime</option>
+                    <option value="alert">Alert</option>
+                  </select>
+                </div>
+                <div class="setting-group">
+                  <label for="notification-duration">Notification Duration (seconds):</label>
+                  <input type="number" id="notification-duration" min="1" max="10" value="3">
+                </div>
+              </div>
+              
+              <!-- Data Management -->
+              <div class="settings-section">
+                <h3>💾 Data Management</h3>
+                <div class="setting-group">
+                  <label for="auto-save-interval">Auto-save interval (minutes):</label>
+                  <input type="number" id="auto-save-interval" min="1" max="60" value="5">
+                </div>
+                <div class="setting-group">
+                  <label for="backup-data">Auto-backup data:</label>
+                  <input type="checkbox" id="backup-data" checked>
+                </div>
+                <div class="setting-group">
+                  <label for="max-backup-files">Maximum backup files to keep:</label>
+                  <input type="number" id="max-backup-files" min="1" max="50" value="10">
+                </div>
+              </div>
+            </div>
+            
+            <div class="settings-actions">
+              <button id="save-settings" class="btn-primary">💾 Save Settings</button>
+              <button id="reset-settings" class="btn-secondary">🔄 Reset to Defaults</button>
+              <button id="export-settings" class="btn-secondary">📤 Export Settings</button>
+              <button id="import-settings" class="btn-secondary">📥 Import Settings</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>Built with Electron & Puppeteer</p>
+      </footer>
+    </div>
+
+    <div id="price-modal" class="modal">
+      <div class="modal-content">
+        <h2>Enter Market Prices</h2>
+        <form id="price-form">
+          <div class="modal-inputs">
+            <label>Prismatic Ingot <input type="number" step="0.01" min="0" name="Prismatic Ingot" required></label>
+            <label>Prismatic Leather <input type="number" step="0.01" min="0" name="Prismatic Leather" required></label>
+            <label>Prismatic Cloth <input type="number" step="0.01" min="0" name="Prismatic Cloth" required></label>
+            <label>Prismatic Planks <input type="number" step="0.01" min="0" name="Prismatic Planks" required></label>
+            <label>Prismatic Scarab <input type="number" step="0.01" min="0" name="Prismatic Scarab" required></label>
+            <label>Armor Matrix <input type="number" step="0.01" min="0" name="Armor Matrix" required></label>
+            <label>Jewelry Matrix <input type="number" step="0.01" min="0" name="Jewelry Matrix" required></label>
+            <label>Weapon Matrix <input type="number" step="0.01" min="0" name="Weapon Matrix" required></label>
+            <label>Prismatic Band <input type="number" step="0.01" min="0" name="Prismatic Band" required></label>
+            <label>Prismatic Setting <input type="number" step="0.01" min="0" name="Prismatic Setting" required></label>
+            <label>Prismatic Hook <input type="number" step="0.01" min="0" name="Prismatic Hook" required></label>
+            <label>Prismatic Chain <input type="number" step="0.01" min="0" name="Prismatic Chain" required></label>
+            <label>Gorgon Essence <input type="number" step="0.01" min="0" name="Gorgon Essence" required></label>
+          </div>
+          <button type="submit" class="modal-submit">Save Prices</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
