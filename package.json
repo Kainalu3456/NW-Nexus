@@ -31,7 +31,7 @@
     "build-real-exe": "pkg scripts/executable-launcher.js --targets node18-win-x64 --output dist-beta/NW-Buddy-Scraper-Beta.exe",
     "create-zip-launcher": "node scripts/create-zip-launcher.js",
     "create-simple-zip": "node scripts/create-simple-zip.js",
-    "cleanup": "node scripts/cleanup.js",
+    "cleanup": "node scripts/cleanup-project.js",
     "fix-electron-package": "node scripts/fix-electron-package.js",
     "create-fixed-package": "node scripts/create-fixed-package.js",
     "use-working-beta": "node scripts/use-working-beta.js",
@@ -43,7 +43,6 @@
     "create-corrected-exe": "node scripts/create-corrected-exe.js",
     "create-system-exe": "node scripts/create-system-exe.js",
     "create-final-working-exe": "node scripts/create-final-working-exe.js",
-    "create-working-exe": "node scripts/create-working-exe.js",
     "create-system-node-exe": "node scripts/create-system-node-exe.js",
     "create-simple-node-exe": "node scripts/create-simple-node-exe.js",
     "create-batch-exe": "node scripts/create-batch-exe.js",
@@ -64,7 +63,6 @@
     "create-powershell-test": "node scripts/create-powershell-test.js",
     "create-simple-powershell-test": "node scripts/create-simple-powershell-test.js",
     "cleanup-old-builds": "node scripts/cleanup-old-builds.js",
-    "cleanup": "node scripts/cleanup-project.js",
     "test-executable": "node scripts/test-executable.js",
     "beta-test": "node scripts/beta-test.js",
     "simple-beta-test": "node scripts/simple-beta-test.js",
@@ -85,20 +83,23 @@
     "cheerio": "^1.0.0-rc.12",
     "electron-squirrel-startup": "^1.0.1",
     "fs-extra": "^11.3.0",
-    "puppeteer": "^23.9.0",
-    "proxy-agent": "^6.3.1"
+    "proxy-agent": "^6.3.1",
+    "puppeteer": "^23.9.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^7.8.1",
-    "@electron-forge/maker-deb": "^7.8.1",
-    "@electron-forge/maker-squirrel": "^7.8.1",
-    "@electron-forge/maker-zip": "^7.8.1",
+    "@electron-forge/cli": "^7.8.2",
+    "@electron-forge/maker-deb": "^7.8.2",
+    "@electron-forge/maker-rpm": "^7.8.2",
+    "@electron-forge/maker-squirrel": "^7.8.2",
+    "@electron-forge/maker-zip": "^7.8.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.2",
+    "@electron-forge/plugin-fuses": "^7.8.2",
+    "@electron/fuses": "^2.0.0",
     "electron": "^28.0.0",
-    "electron-builder": "^24.0.0",
     "nodemon": "^3.0.1",
     "pkg": "^5.8.1"
   },
-  "build": {
+  "build_disabled": {
     "appId": "com.nwbuddy.scraper",
     "productName": "NW Buddy Scraper",
     "directories": {
@@ -109,7 +110,7 @@
       "src/**/*",
       "config/**/*",
       "node_modules/**/*",
-      "assets/**/*"
+      "assets"
     ],
     "extraResources": [
       {
@@ -145,23 +146,24 @@
     "forge": {
       "packagerConfig": {
         "name": "NWBuddyScraper",
-        "asar": true,
+        "asar": false,
         "overwrite": true,
         "ignore": [
           "node_modules/.cache",
-          "dist",
-          "dist-beta",
-          "output",
-          ".git",
-          ".gitignore",
-          "README.md",
-          "scripts",
-          "test-*",
-          "BETA_*",
-          "ELECTRON_*"
+          "^/dist$",
+          "^/dist-beta$",
+          "^/output$",
+          "^/.git$",
+          "^/.gitignore$",
+          "^/README.md$",
+          "^/scripts$",
+          "^/test-",
+          "^/BETA_",
+          "^/ELECTRON_",
+          "^/.claude$"
         ],
         "extraResource": [
-          "assets/**/*"
+          "./assets"
         ]
       },
       "makers": [
